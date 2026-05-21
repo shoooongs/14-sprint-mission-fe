@@ -16,25 +16,38 @@
       <a class="bt_login" href="/login.html">로그인</a>
     </nav>
   </header>
-  <main class="main_login">
-    <section class="login">
+  <main class="main_join">
+    <section class="join">
       <h1><a href="/index.html"><img src="/images/Property 1=lg@2x.png" alt="판다마켓 로고"></a></h1>
-      <div class="login-form">
+      <div class="join-form">
         <form method="post">
           <div>
-            <label for="login-email">이메일</label>
-            <input id="login-email" name="email" placeholder="이메일을 입력해주세요" type="email" required>
+            <label for="signup-email">이메일</label>
+            <input id="signup-email" name="email" placeholder="이메일을 입력해주세요" type="email" required>
           </div>
           <div>
-            <label for="login-password">비밀번호</label>
+            <label for="signup-nickname">닉네임</label>
+            <input id="signup-nickname" name="nickname" placeholder="닉네임을 입력해주세요" type="text" required>
+          </div>
+          <div>
+            <label for="signup-password">비밀번호</label>
             <div class="input-password">
-              <input id="login-password" name="password" placeholder="비밀번호를 입력해주세요" type="password" >
+              <input id="signup-password" name="password" placeholder="비밀번호를 입력해주세요" type="password" >
               <button type="button" id="togglePassword" class="btn-password-toggle" aria-label="비밀번호 보기">
                 <img src="images/btn_visibility_off.svg" alt="비밀번호 보기 아이콘">
               </button>
             </div>
           </div>
-          <button type="button" id="login" class="bt_login" aria-label="로그인하기">로그인</button>
+          <div>
+            <label for="signup-password-verify">비밀번호 확인</label>
+            <div class="input-password">
+              <input id="signup-password-verify" name="password" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" >
+              <button type="button" id="togglePassword" class="btn-password-toggle" aria-label="비밀번호 보기">
+                <img src="images/btn_visibility_off.svg" alt="비밀번호 보기 아이콘">
+              </button>
+            </div>
+          </div>
+          <button type="button" id="join" class="bt_join" aria-label="회원가입하기">회원가입</button>
         </form>
         <div class="social-login">
           <p>간편 로그인하기</p>
@@ -44,8 +57,8 @@
           </ul>
         </div>
       </div>
-      <div class="join-footer">
-        <p>판다마켓이 처음이신가요? <a href="join.html">회원가입</a></p>
+      <div class="login-footer">
+        <p>이미 회원이신가요? <a href="login.html">로그인</a></p>
       </div>
     </section>
   </main>

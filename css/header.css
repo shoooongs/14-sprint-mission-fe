@@ -1,16 +1,17 @@
 html{
 	font-size: 62.5%;
   font-family: Pretendard, sans-serif;
+  scrollbar-gutter: stable;
 }
 body{
-  color: #374151;
+  color: var(--color-text-base);
   font-size: 1.6rem;
 }
 header{
   position: fixed;
   top:0;
   width:100%;
-  background-color: #fff;
+  background-color: var(--color-bg-sub);
   z-index: 999;
 }
 header nav{
@@ -34,7 +35,7 @@ header nav a.bt_login{
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: #3692FF;
+  background-color: var(--color-primary);
   border-radius: 8px;
   color: #F3F4F6;
   line-height: 26px;

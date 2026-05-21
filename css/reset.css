@@ -14,7 +14,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, input, form, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -47,4 +47,27 @@ table {
 }
 a{
   text-decoration: none;
+}
+button ,input{
+  border:0 none;
+}
+button{
+  cursor: pointer;
+  background-color: transparent;
+}
+:root{
+  --color-primary: #3692FF;
+  --color-secondary: #CFE5FF;
+  --color-tertiary: #E6F2FF;
+
+  --color-bg-sub: #ffffff;
+  --color-bg-dark: #111827;
+  --color-bg-grey: #FCFCFC;
+  
+  --color-text-point: #3692FF;
+  --color-text-base: #374151;
+  --color-text-dark: #1F2937;
+  --color-text-footer: #E5E7EB;
+  --color-text-inactive: #9CA3AF;
+  --color-text-button: #F3F4F6;
 }

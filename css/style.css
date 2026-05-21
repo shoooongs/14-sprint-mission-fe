@@ -246,11 +246,11 @@ footer p:last-child{
 .social-login__group li img{
   width: 100%;
 }
-.join-footer p, .login-footer p{
+.signup-footer p, .login-footer p{
   color: var(--color-text-dark);
   font-size: 1.4rem;
 }
-.join-footer a, .login-footer a{
+.signup-footer a, .login-footer a{
   color: var(--color-primary);
   text-decoration: underline;
 }

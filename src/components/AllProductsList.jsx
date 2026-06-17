@@ -13,6 +13,8 @@ function AllProductsList () {
   //페이지 상태 관리
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  //키워드 상태 관리
+  const [keyword, setKeyword] = useState('');
   //복사한 배열 객체 items -> 객체 안의 프로퍼티가 고정일시 '.', 변수면 '[]'으로 바꿔줘야함
   //const sortedItems = [...items].sort((a,b) => b[order] - a[order]);
   const [windowSize, setWindowSize] = useState('');
@@ -26,7 +28,8 @@ function AllProductsList () {
       params: {
         orderBy: order,
         pageSize: 10,
-        page : page,
+        page: page,
+        keyword: keyword,
       }
     });
     const { list } = response.data;
@@ -34,7 +37,7 @@ function AllProductsList () {
     setPage(page);
     setTotalPage(Math.ceil(response.data.totalCount / 10)); 
     
-  }, [order, page]);
+  }, [order, page, keyword]);
 
   // for (let i = 1; i <= totalPage; i++){ 
   //   pageList.push(i);
@@ -59,8 +62,13 @@ function AllProductsList () {
       if ( lastPageOfCurrentList < totalPage){
       setPage(lastPageOfCurrentList + 1);
     }}
-  }
-
+  };
+  //검색 기능 구현
+  const submitSearch = (formData) => {
+    const searchKeyword = formData.get('keyword');
+    setKeyword(searchKeyword);
+    setPage(1);
+  };
 
   useEffect(() => {
     handleLoad();
@@ -74,9 +82,13 @@ function AllProductsList () {
   }
 
   //아이템 컴포넌트 items로 일시키기
-  return (
+  return ( 
       <div>
         <h2>판매 중인 상품</h2>
+        <form action={submitSearch}>
+          <input type="text" name="keyword" defaultValue="" placeholder="검색할 상품을 입력해주세요"/>
+          <button>검색</button>
+        </form>
         {/* 검색인풋 (폼으로 따로 만들어 넣기)
         상품 등록하기 버튼 (모달일듯? */}
         <button type="button">상품 등록하기</button>

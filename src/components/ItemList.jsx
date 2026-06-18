@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './ItemList.module.css'
+import defaultImage from '../assets/default-thumbnail.png'
 
 //똑같은 아이템객체정보를 받는 두개의 함수를 만듦 
 //개별 아이템을 꾸미는 역할
@@ -7,7 +8,7 @@ import styles from './ItemList.module.css'
 function EachItem ({ item }) {
   return (
     <li className={styles.eachItem}>
-      <div className={styles.thumbnail}><img src={item.images} alt={item.name}/></div>
+      <div className={styles.thumbnail}><img src={item.images ?? defaultImage} alt={item.name} onError={(e) => (e.target.src = defaultImage)} /></div>
       <div className={styles.description}>
         <h3>{item.name}</h3>
         <p className={styles.price}>{item.price}원</p>

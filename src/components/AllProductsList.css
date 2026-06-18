@@ -72,9 +72,16 @@
   top: 50px;
   text-align: center;
   padding: 0;
+  opacity: 0;
   visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
 }
-
+.select-filter-container ul.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
 .select-filter-container ul li{
   cursor: pointer;

@@ -2,9 +2,6 @@ import { useState, useEffect, Children, useCallback } from "react";
 import axios from '../utils/axios.jsx';
 import ItemList from "./ItemList.jsx";
 
-const windowInnerWidth = window.innerWidth;
-console.log(windowInnerWidth);
-
 function AllProductsList () {
   // 상품목록 데이터 상태관리
   const [items, setItems] = useState([]);
@@ -15,9 +12,10 @@ function AllProductsList () {
   const [totalPage, setTotalPage] = useState(0);
   //키워드 상태 관리
   const [keyword, setKeyword] = useState('');
+  //페이지 상품개수 관리
+  const [pageSize, setPageSize] = useState(10);
   //복사한 배열 객체 items -> 객체 안의 프로퍼티가 고정일시 '.', 변수면 '[]'으로 바꿔줘야함
   //const sortedItems = [...items].sort((a,b) => b[order] - a[order]);
-  const [windowSize, setWindowSize] = useState('');
 
   //페이지네이션 : 최대 5개까지의 숫자를 하위에서 보여줌 -> 이는 10개씩(pc기준)으로 자른 page번호임 -> 클릭(이벤트) 해당 페이지 번호를 쿼리로 넘겨서
   
@@ -27,7 +25,7 @@ function AllProductsList () {
     const response = await axios.get('/products', {
       params: {
         orderBy: order,
-        pageSize: 10,
+        pageSize: pageSize,
         page: page,
         keyword: keyword,
       }
@@ -35,9 +33,9 @@ function AllProductsList () {
     const { list } = response.data;
     setItems(list);
     setPage(page);
-    setTotalPage(Math.ceil(response.data.totalCount / 10)); 
+    setTotalPage(Math.ceil(response.data.totalCount / pageSize)); 
     
-  }, [order, page, keyword]);
+  }, [order, pageSize, page, keyword]);
 
   // for (let i = 1; i <= totalPage; i++){ 
   //   pageList.push(i);
@@ -51,6 +49,7 @@ function AllProductsList () {
   //현재 페이지(page)가 속하는 배열 찾기 - 배열 map으로 리스트화해주면 끝남...ㅠㅠㅠㅠㅠ
   const pagessss = seperatedPageList[Math.floor((page - 1) / 5)];
   const currentList = pagessss || [] ;
+
   //이전, 이후 버튼 동작 
   const handlePageList = ( direction ) => {
     if ( direction === 'Prev') {
@@ -64,11 +63,32 @@ function AllProductsList () {
     }}
   };
   //검색 기능 구현
-  const submitSearch = (formData) => {
+  const submitSearch = async (formData) => {
     const searchKeyword = formData.get('keyword');
     setKeyword(searchKeyword);
     setPage(1);
   };
+
+  //반응형 구현 화면사이즈에 따라 아이템 개수를 조정하기
+  const handleSize = useCallback(() => {
+    const contentWidth = window.innerWidth;
+    if (contentWidth < 768 ){
+      setPageSize(4);
+    } else if (contentWidth < 1024 ){
+      setPageSize(6);
+    } else {
+      setPageSize(10);
+    }
+  },[]);
+
+  useEffect(() => {
+    //처음
+    handleSize();
+    //리사이즈했을때 실행하셈
+    window.addEventListener('resize',handleSize);
+    //이벤트리스너 지움
+    return () => window.removeEventListener('resize',handleSize);
+  },[handleSize]);
 
   useEffect(() => {
     handleLoad();

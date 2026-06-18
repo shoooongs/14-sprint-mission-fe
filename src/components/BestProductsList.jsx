@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import axios from '../utils/axios.jsx';
 import ItemList from "./ItemList.jsx";
 
+
 function BestProductsList () {
   const [bestItems, setBestItems] = useState([]);
   const [pageSize, setPageSize] = useState(4);
@@ -34,7 +35,7 @@ function BestProductsList () {
      handleSize();
      //리사이즈했을때 실행하셈
      window.addEventListener('resize',handleSize);
-     //이벤트리스너 지움
+     //이벤트리스너 리턴한다 -> 나중에 화면필요없을때 실행됨
      return () => window.removeEventListener('resize',handleSize);
    },[handleSize]);
  
@@ -43,12 +44,10 @@ function BestProductsList () {
   },[handleLoad]);
 
   return (
-    <div>
-      <h2>베스트 상품</h2>
-      <ul>
-        <ItemList items={bestItems}/>
-      </ul>
-    </div>
+    <section className="products-list best">
+      <h2 className="section-title">베스트 상품</h2> 
+      <ItemList items={bestItems}/>
+    </section>
   );
 }
 

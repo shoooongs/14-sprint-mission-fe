@@ -1,0 +1,20 @@
+.products-list{
+  min-width: 1200px;
+  max-width: 1200px;
+  margin-bottom: 4rem;
+  padding:0 40px;
+}
+.products-list .grid{
+  margin-top: 2.4rem;
+}
+.products-list .section-title{
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem; 
+}
+.products-list.best .grid{
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2.4rem;
+}

@@ -1,0 +1,107 @@
+.products-list.all .grid{
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 4rem;
+  column-gap: 2.4rem;
+}
+.section-title-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.products-filter{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.products-filter form{
+  display: flex;
+  align-items: stretch;
+}
+.products-filter .search-box{
+  width:28.9rem;
+  height: 24px;
+  padding:.9rem 2rem .9rem 1.6rem;
+  background-color: #F3F4F6;
+  color: #000;
+  border-radius: 1.2rem;
+  font-weight: 400;
+  line-height: 2.6rem; 
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  box-sizing: content-box;
+}
+.products-filter .search-box svg{
+  vertical-align: middle;
+}
+.products-filter .search-box input{
+  background-color: transparent;
+  width: 100%;
+}
+.products-filter .search-box input:focus{
+  outline:none;
+}
+.products-filter input::placeholder{
+    color: #9CA3AF;
+}
+.bt-search {
+  background-color: var(--color-text-base);
+}
+
+.select-filter-container, .select-filter-container ul{
+  position: relative;
+  width: 130px;
+  padding: 1.2rem 2rem;
+  border-radius: 1.2rem;
+  border: 1px solid var(--color-text-footer);
+  background-color: var(--color-bg-sub);
+
+}
+.select-filter-container div{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.select-filter-container ul{
+  position: absolute;
+  right:0;
+  top: 50px;
+  text-align: center;
+  padding: 0;
+  visibility: hidden;
+}
+
+
+.select-filter-container ul li{
+  cursor: pointer;
+  padding: 10px 0;
+  line-height: 26px; 
+}
+.select-filter-container ul li:first-child{
+  border-bottom: 1px solid var(--color-text-footer);
+}
+
+.pagenation{
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4.3rem !important;
+  margin-bottom: 14rem;
+}
+.pagenation li button{
+  width: 4rem;
+  height: 4rem;
+  border:1px solid var(--color-text-footer);
+  border-radius: 50%;
+  font-weight: 600;
+  color: #6B7280;
+}
+.pagenation li.active button{
+  background-color: var(--color-primary);
+  color: var(  --color-bg-sub);
+  border: 0 none;
+}

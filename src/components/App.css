@@ -1,0 +1,20 @@
+main{
+  background-color: #FCFCFC;
+  padding-top: 93px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bt-primary{
+  display: flex;
+  padding: 1.2rem 2.3rem;
+  height: 4.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  color: #F3F4F6;
+  line-height: 2.6rem;
+  font-weight: 600;
+}

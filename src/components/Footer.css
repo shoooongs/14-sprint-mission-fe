@@ -25,6 +25,7 @@ footer p:last-child{
   display: flex;
   gap: 1.2rem;
 }
+
 @media (max-width:1024) {
   .foot-info{
     padding: 3.2rem 2.4rem;
@@ -38,5 +39,9 @@ footer p:last-child{
   }
   .foot-info{
     padding: 3.2rem 1.6rem;
+  }
+  footer p:nth-child(2){
+    flex-grow: 1;
+    width: 50%;
   }
 }

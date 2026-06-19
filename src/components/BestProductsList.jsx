@@ -9,6 +9,7 @@ function BestProductsList () {
 
   //똑같이 handleLoad를 불러오는데, 딱 4개 일단 셋팅
   const handleLoad = useCallback(async() => {
+    console.log('핸들로드안의 페이지사이즈', pageSize);
     const response = await axios.get('/products',{
       params: {
         pageSize: pageSize,
@@ -19,14 +20,20 @@ function BestProductsList () {
     setBestItems(list);
   },[pageSize]);
 
+  console.log('페이지사이즈', pageSize);
+
   const handleSize = useCallback(() => {
      const contentWidth = window.innerWidth;
+     console.log(contentWidth);
      if (contentWidth < 480 ){
        setPageSize(1);
+       console.log('1');
      } else if (contentWidth < 1024 ){
        setPageSize(2);
+       console.log('2');
      } else {
        setPageSize(4);
+       console.log('4');
      }
    },[]);
  
@@ -40,6 +47,7 @@ function BestProductsList () {
    },[handleSize]);
  
   useEffect(() => {
+    console.log('핸들로드 실행');
     handleLoad();
   },[handleLoad]);
 

@@ -17,12 +17,12 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-.products-filter form{
+.section-title-header form{
   display: flex;
   justify-content: end;
   align-items: stretch;
 }
-.products-filter .search-box{
+.search-box{
   width:28.9rem;
   height: 24px;
   padding:.9rem 2rem .9rem 1.6rem;
@@ -36,64 +36,24 @@
   align-items: center;
   box-sizing: content-box;
 }
-.products-filter .search-box svg{
+.search-box svg{
   vertical-align: middle;
 }
-.products-filter .search-box input{
+.search-box input{
   background-color: transparent;
   width: 100%;
 }
-.products-filter .search-box input:focus{
+.search-box input:focus{
   outline:none;
 }
-.products-filter input::placeholder{
+.search-box input::placeholder{
     color: #9CA3AF;
 }
 .bt-search {
   background-color: var(--color-text-base);
 }
 
-.select-filter-container, .select-filter-container ul{
-  position: relative;
-  width: 130px;
-  padding: 1.2rem 2rem;
-  border-radius: 1.2rem;
-  border: 1px solid var(--color-text-footer);
-  background-color: var(--color-bg-sub);
 
-}
-.select-filter-container div{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-.select-filter-container ul{
-  position: absolute;
-  right:0;
-  top: 50px;
-  text-align: center;
-  padding: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
-}
-.select-filter-container ul.active{
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.select-filter-container ul li{
-  cursor: pointer;
-  padding: 10px 0;
-  line-height: 26px; 
-}
-.select-filter-container ul li:first-child{
-  border-bottom: 1px solid var(--color-text-footer);
-}
 
 
 
@@ -105,6 +65,7 @@
   .products-list.all .grid{
     gap: 1rem;
     grid-template-columns: repeat(3, 2fr);
+    row-gap: 4rem;
   }
   .section-title-header{
     align-items:start;
@@ -123,21 +84,32 @@
     min-width: 100%;
     padding:0 1.6rem;
   }
-  
   .products-list.all .grid{
     grid-template-columns: repeat(2, 2fr);
+    row-gap: 3.2rem;
   }
-  .products-filter .bt-primary{
-    order: -1;
-  }
-  .products-filter .select-filter-container{
-    order: 2;
-  }
-  .products-filter form div{
-    order: -1;
+  .section-title-header {
+    flex-wrap: wrap;
+    gap: .8rem;
   }
   .section-title-header .section-title{
     flex-shrink: 1;
   }
-
+  .products-search-m{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.2rem;
+    width: 100%;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  .products-search-m form{
+    flex-grow: 1;
+  }
+  .search-box{
+    width: 100%;
+  }
+  .bt-search{
+    flex-shrink: 0;
+  }
 }

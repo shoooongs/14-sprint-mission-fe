@@ -1,6 +1,7 @@
 import { useState, useEffect, Children, useCallback } from "react";
 import axios from '../utils/axios.jsx';
 import ItemList from "./ItemList.jsx";
+import Pagination from "./Pagination.jsx";
 
 function AllProductsList () {
   // 상품목록 데이터 상태관리
@@ -19,7 +20,7 @@ function AllProductsList () {
   //복사한 배열 객체 items -> 객체 안의 프로퍼티가 고정일시 '.', 변수면 '[]'으로 바꿔줘야함
   //const sortedItems = [...items].sort((a,b) => b[order] - a[order]);
 
-  //페이지네이션 : 최대 5개까지의 숫자를 하위에서 보여줌 -> 이는 10개씩(pc기준)으로 자른 page번호임 -> 클릭(이벤트) 해당 페이지 번호를 쿼리로 넘겨서
+  //페이지네이션 : 최대 5개까지의 s숫자를 하위에서 보여줌 -> 이는 10개씩(pc기준)으로 자른 page번호임 -> 클릭(이벤트) 해당 페이지 번호를 쿼리로 넘겨서
   
   //list를 재 렌더링 (handleLoad기능 사용) 현재 번호는 클릭이 안되겠지.
   //화살표 : 화살표를 누르면 5개로 자른 다음 페이지 배열을 보여줌 -> 그리고 화면도 그 배열의 첫번째숫자 page번호로 렌더링됨 
@@ -42,27 +43,7 @@ function AllProductsList () {
   // for (let i = 1; i <= totalPage; i++){ 
   //   pageList.push(i);
   // }
-  const totalPageList = Array(totalPage).fill().map((_, i) => i + 1);
-  //배열을 5개씩 쪼개서 중첩배열로 만들기
-  const seperatedPageList = [];
-  for (let i = 0; i < totalPageList.length; i+=5 ){
-    seperatedPageList.push(totalPageList.slice(i, i+5));
-  }
-  //현재 페이지(page)가 속하는 배열 찾기 - 배열 map으로 리스트화해주면 끝남...ㅠㅠㅠㅠㅠ [1,2,3,4,5]
-  const currentList = seperatedPageList[Math.floor((page - 1) / 5)] || [] ;
-
-  //이전, 이후 버튼 동작 
-  const handlePageList = ( direction ) => {
-    if ( direction === 'Prev') {
-      if ( currentList[0] > 1 ){
-        setPage(currentList[0] - 1);
-      }
-    } else if ( direction === 'Next') {
-      const lastPageOfCurrentList = currentList[currentList.length - 1] ;
-      if ( lastPageOfCurrentList < totalPage){
-      setPage(lastPageOfCurrentList + 1);
-    }}
-  };
+  
 
  //현재 활성화되어있는 페이지 li 클래스주기 => 리액트에서는 삼항연산자로함....ㅠㅠ
   // const realPage = document.querySelector(`li[key="${page}"]`);
@@ -142,28 +123,7 @@ function AllProductsList () {
           </div>
         </div>
         <ItemList items={items}/>
-        <ul className="pagenation">
-          <li><button onClick={() => handlePageList('Prev')}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-             <path d="M9.5 4.66669L6 8.16669L9.5 11.6667" stroke="#4B5563" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button></li>
-          {currentList.map((p) => (
-            <li
-              key={p}
-              className={p === page ? 'active' : ''}
-            >
-              <button onClick={() => setPage(p)}>
-              {p}
-            </button>
-            </li>
-          ))}
-          <li><button onClick={() => handlePageList('Next')}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 4.66656L9.5 8.16656L6 11.6666" stroke="#4B5563" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button></li>
-        </ul>
+        <Pagination lists={totalPage} page={page} setPage={setPage} />
       </section>
     );
  }

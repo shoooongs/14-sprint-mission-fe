@@ -78,7 +78,7 @@ function AllProductsList () {
   //반응형 구현 화면사이즈에 따라 아이템 개수를 조정하기
   const handleSize = useCallback(() => {
     const contentWidth = window.innerWidth;
-    if (contentWidth < 768 ){
+    if (contentWidth < 480 ){
       setPageSize(4);
     } else if (contentWidth < 1024 ){
       setPageSize(6);
@@ -86,9 +86,6 @@ function AllProductsList () {
       setPageSize(10);
     }
   },[]);
-
-
-
 
   useEffect(() => {
     //처음
@@ -129,7 +126,6 @@ function AllProductsList () {
                 </div>
                 <button className="bt-primary bt-search">검색</button>
               </form>
-           
             <button className="bt-primary" type="button">상품 등록하기</button>
             <div className="select-filter-container">
               <div onClick={handleDropdown}>

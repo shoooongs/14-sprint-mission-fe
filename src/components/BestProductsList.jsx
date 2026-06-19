@@ -21,7 +21,7 @@ function BestProductsList () {
 
   const handleSize = useCallback(() => {
      const contentWidth = window.innerWidth;
-     if (contentWidth < 768 ){
+     if (contentWidth < 480 ){
        setPageSize(1);
      } else if (contentWidth < 1024 ){
        setPageSize(2);

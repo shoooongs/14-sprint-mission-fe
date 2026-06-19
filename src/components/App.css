@@ -18,3 +18,8 @@ main{
   line-height: 2.6rem;
   font-weight: 600;
 }
+@media (max-width:480px) {
+  main{
+   padding-top: 84px;
+  }
+}

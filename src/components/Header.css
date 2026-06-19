@@ -33,9 +33,37 @@ header .left-zone ul li{
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  font-size: 1.8rem;
 }
 header .left-zone ul li a{
   color: var(--color-text-base);
   padding: 2.1rem 1.5rem;
   font-weight: 700;
+}
+
+@media (max-width:1024px) {
+  header nav{
+      padding: 0 2.4rem;
+  }
+    
+}
+@media (max-width:480px) {
+  header nav{
+    padding: 0 1.6rem;
+  }
+  header .left-zone{
+    gap: .8rem;
+  }
+  header .left-zone h1 img{
+     height: 2.7rem;
+  }
+  header .left-zone ul{
+    gap:.8rem;
+  }
+  header .left-zone ul li{
+    font-size: 1.6rem;
+  }
+  header .left-zone ul li a{
+    padding: 2.1rem 0;
+  }
 }

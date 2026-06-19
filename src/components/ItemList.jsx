@@ -8,7 +8,7 @@ import defaultImage from '../assets/default-thumbnail.png'
 function EachItem ({ item }) {
   return (
     <li className={styles.eachItem}>
-      <div className={styles.thumbnail}><img src={item.images ?? defaultImage} alt={item.name} onError={(e) => (e.target.src = defaultImage)} /></div>
+      <div className={styles.thumbnail}><img src={item.images} alt={item.name} onError={(e) => (e.target.src = defaultImage)}/></div>
       <div className={styles.description}>
         <h3>{item.name}</h3>
         <p className={styles.price}>{item.price}원</p>

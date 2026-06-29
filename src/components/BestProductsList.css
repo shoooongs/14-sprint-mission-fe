@@ -2,7 +2,6 @@
   /* min-width: 1200px; */
   max-width: 1200px;
   margin-bottom: 4rem;
-  padding:0 40px;
 }
 .products-list .grid{
   margin-top: 1.6rem;
@@ -11,6 +10,9 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 3.2rem; 
+}
+.products-list.best{
+  margin-top:25px;
 }
 .products-list.best .grid{
   display: grid;
@@ -22,7 +24,6 @@
 @media (max-width:1024px) {
   .products-list{
     min-width: 100%;
-    padding:0 2.4rem;
   }
   
   .products-list.best .grid{
@@ -33,7 +34,6 @@
 @media (max-width:480px) {
   .products-list{
     min-width: 100%;
-    padding:0 1.6rem;
   }
   
   .products-list.best .grid{

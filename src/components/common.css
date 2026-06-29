@@ -33,3 +33,6 @@ button{
   --color-text-inactive: #9CA3AF;
   --color-text-button: #F3F4F6;
 }
+textarea {
+  font-family: inherit;
+}

@@ -1,4 +1,6 @@
 import { useState, useEffect, Children, useCallback } from "react";
+import { useIsMobile, useSetIsMobile } from "../contexts/ResponsiveContext.jsx";
+import { Link } from "react-router-dom";
 import axios from '../utils/axios.jsx';
 import ItemList from "./ItemList.jsx";
 import Pagination from "./Pagination.jsx";
@@ -16,14 +18,10 @@ function AllProductsList () {
   const [keyword, setKeyword] = useState('');
   //페이지 상품개수 관리
   const [pageSize, setPageSize] = useState(10);
-  const [isMobile, setIsMobile] = useState(false);
-  //복사한 배열 객체 items -> 객체 안의 프로퍼티가 고정일시 '.', 변수면 '[]'으로 바꿔줘야함
-  //const sortedItems = [...items].sort((a,b) => b[order] - a[order]);
 
-  //페이지네이션 : 최대 5개까지의 s숫자를 하위에서 보여줌 -> 이는 10개씩(pc기준)으로 자른 page번호임 -> 클릭(이벤트) 해당 페이지 번호를 쿼리로 넘겨서
-  
-  //list를 재 렌더링 (handleLoad기능 사용) 현재 번호는 클릭이 안되겠지.
-  //화살표 : 화살표를 누르면 5개로 자른 다음 페이지 배열을 보여줌 -> 그리고 화면도 그 배열의 첫번째숫자 page번호로 렌더링됨 
+  const isMobile = useIsMobile();
+  const setIsMobile = useSetIsMobile();
+
   const handleLoad = useCallback(async( ) => {
     const response = await axios.get('/products', {
       params: {
@@ -39,15 +37,6 @@ function AllProductsList () {
     setTotalPage(Math.ceil(response.data.totalCount / pageSize)); 
     
   }, [order, pageSize, page, keyword]);
-
-  // for (let i = 1; i <= totalPage; i++){ 
-  //   pageList.push(i);
-  // }
-  
-
- //현재 활성화되어있는 페이지 li 클래스주기 => 리액트에서는 삼항연산자로함....ㅠㅠ
-  // const realPage = document.querySelector(`li[key="${page}"]`);
-  // console.log(realPage);
 
   //검색 기능 구현
   const submitSearch = async (formData) => {
@@ -72,22 +61,14 @@ function AllProductsList () {
   },[]);
 
   useEffect(() => {
-    //처음
     handleSize();
-    //리사이즈했을때 실행하셈
     window.addEventListener('resize',handleSize);
-    //이벤트리스너 지움
     return () => window.removeEventListener('resize',handleSize);
   },[handleSize]);
 
   useEffect(() => {
     handleLoad();
   },[handleLoad]);
-  //서버사이드에서 가져오니까 order기준으로 새로운 목록을 만듦
-
-  //상태를 설정했으면 setOrder를 통해 order를 바꾸어주면 됨. 온클릭 함수로넘겨줘야됨.(이 아니었어)
-  //온클릭이 아니라 Select는 onChange메서드로 e객체의 값을 넣어줄수있음.-> 다시 바뀜. div li로 
-
 
   return ( 
       <section className="products-list all">
@@ -95,7 +76,7 @@ function AllProductsList () {
           <h2 className="section-title">판매 중인 상품</h2>
           {isMobile ? (
             <>
-            <button className="bt-primary" type="button">상품 등록하기</button>
+            <Link to="/registration"><button className="bt-primary" type="button">상품 등록하기</button></Link>
             <div className="products-search-m">
               <form action={submitSearch}>
                 <div className="search-box">
@@ -121,7 +102,7 @@ function AllProductsList () {
               </div>
               <button className="bt-primary bt-search">검색</button>
             </form>
-            <button className="bt-primary" type="button">상품 등록하기</button>
+            <Link to="/registration"><button className="bt-primary" type="button">상품 등록하기</button></Link>
             <Dropdown order={order} setOrder={setOrder} isMobile={isMobile}/>
           </div>
             </>

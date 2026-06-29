@@ -1,12 +1,16 @@
 
 import { useState } from "react";
+import { useIsMobile, useSetIsMobile } from "../contexts/ResponsiveContext.jsx";
 import './Dropdown.css'
 
-function Dropdown ({ order, setOrder, isMobile }) {
+function Dropdown ({ order, setOrder }) {
   //정렬 토글 관리
   const [isOpen, setIsOpen] = useState(false);
   const handleDropdown = () => setIsOpen(!isOpen);
   
+  const isMobile = useIsMobile();
+  const SetIsMobile = useSetIsMobile();
+
   const handleSortChange = (e) => {
     setOrder(e);
     setIsOpen(false);

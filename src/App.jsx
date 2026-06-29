@@ -1,25 +1,22 @@
-import Header from './components/Header.jsx';
-import BestProductsList from './components/BestProductsList.jsx';
-import AllProductsList from './components/AllProductsList.jsx';
-import Footer from './components/Footer.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import Items from './pages/Items.jsx';
+import Registration from './pages/Registration.jsx';
+import Homepage from './pages/Homepage.jsx';
 
-import './components/reset.css'
-import './components/common.css'
-import './components/App.css'
-import './components/Header.css'
-import './components/BestProductsList.css'
-import './components/AllProductsList.css'
-import './components/Footer.css'
 
 function App() {
   return (
     <>
-     <Header />
-     <main>
-      <BestProductsList />
-      <AllProductsList />
-     </main>
-     <Footer />
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Homepage />} />
+            <Route path="/items" element={<Items />} />
+            <Route path="/registration" element={<Registration />} />
+          </Route>
+        </Routes>
+    </BrowserRouter>
     </>
   )
 }

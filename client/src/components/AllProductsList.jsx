@@ -21,7 +21,7 @@ function AllProductsList () {
 
   const isMobile = useIsMobile();
   const setIsMobile = useSetIsMobile();
-
+  //서버에서 받아오고 있는 옵션 구조들 참고
   const handleLoad = useCallback(async( ) => {
     const response = await axios.get('/products', {
       params: {

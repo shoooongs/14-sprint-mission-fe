@@ -7,21 +7,15 @@ import Pagination from "./Pagination.jsx";
 import Dropdown from "./Dropdown.jsx";
 
 function AllProductsList () {
-  // 상품목록 데이터 상태관리
   const [items, setItems] = useState([]);
-  //정렬 상태 관리
   const [order, setOrder] = useState('recent');
-  //페이지 상태 관리
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-  //키워드 상태 관리
   const [keyword, setKeyword] = useState('');
-  //페이지 상품개수 관리
   const [pageSize, setPageSize] = useState(10);
 
   const isMobile = useIsMobile();
   const setIsMobile = useSetIsMobile();
-  //서버에서 받아오고 있는 옵션 구조들 참고
   const handleLoad = useCallback(async( ) => {
     const response = await axios.get('/products', {
       params: {
@@ -38,14 +32,12 @@ function AllProductsList () {
     
   }, [order, pageSize, page, keyword]);
 
-  //검색 기능 구현
   const submitSearch = async (formData) => {
     const searchKeyword = formData.get('keyword');
     setKeyword(searchKeyword);
     setPage(1);
   };
 
-  //반응형 구현 화면사이즈에 따라 아이템 개수를 조정하기
   const handleSize = useCallback(() => {
     const contentWidth = window.innerWidth;
     if (contentWidth < 480 ){

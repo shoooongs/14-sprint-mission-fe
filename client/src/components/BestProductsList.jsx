@@ -10,14 +10,14 @@ function BestProductsList () {
   //똑같이 handleLoad를 불러오는데, 딱 4개 일단 셋팅
   const handleLoad = useCallback(async() => {
     console.log('핸들로드안의 페이지사이즈', pageSize);
-    const response = await axios.get('/products',{
+    const response = await axios.get('/tasks',{
       params: {
         pageSize: pageSize,
         orderBy: 'favorite',
       }
     });
-    const { list } = response.data;
-    setBestItems(list);
+    const { items } = response.data;
+    setBestItems(items);
   },[pageSize]);
 
   console.log('페이지사이즈', pageSize);

@@ -17,7 +17,7 @@ function AllProductsList () {
   const isMobile = useIsMobile();
   const setIsMobile = useSetIsMobile();
   const handleLoad = useCallback(async( ) => {
-    const response = await axios.get('/products', {
+    const response = await axios.get('/tasks', {
       params: {
         orderBy: order,
         pageSize: pageSize,
@@ -25,8 +25,9 @@ function AllProductsList () {
         keyword: keyword,
       }
     });
-    const { list } = response.data;
-    setItems(list);
+    const { items } = response.data;
+
+    setItems(items);
     setPage(page);
     setTotalPage(Math.ceil(response.data.totalCount / pageSize)); 
     
